@@ -47,3 +47,26 @@ pilot 只运行 deterministic mock，不联网、不读取 API key。输出的 m
 
 - `docs/方向丁_中转站投毒客户端检测_设计_2026-07.md`
 - `docs/论文方向与完整思路_交接_2026-07.md`
+
+## 提交与推送流程（重要）
+
+本仓库的提交**统一由 antigravity 推送**。原因：Devin 侧的 GitHub 认证代理无法对本仓库
+写入（`git push` 返回 403），因此 Devin 只在本地准备提交并打成 git bundle，由拥有 GitHub
+写权限的 antigravity 完成推送。
+
+标准流程（antigravity 执行）：
+
+```bash
+# 已有仓库时：拉取 Devin 提供的 bundle 里的新提交并推送
+git clone https://github.com/ZeKaiNie/transfer-station-behavior-detection.git
+cd transfer-station-behavior-detection
+git pull /path/to/xxx.bundle main   # bundle 由 Devin 生成、随消息附上
+git push origin main
+
+# 空仓库首次初始化时：直接从 bundle 克隆再改远程推送
+# git clone xxx.bundle repo && cd repo
+# git remote set-url origin https://github.com/ZeKaiNie/transfer-station-behavior-detection.git
+# git push -u origin main
+```
+
+约束不变：不推送 secret、raw runs、大数据集；commit message 用 `[模块] 简要描述`。
