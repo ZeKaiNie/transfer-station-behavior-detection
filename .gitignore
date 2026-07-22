@@ -1,0 +1,12 @@
+runs/
+.env
+.env.*
+__pycache__/
+*.py[cod]
+*.key
+models/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
